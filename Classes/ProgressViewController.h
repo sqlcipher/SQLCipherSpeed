@@ -12,11 +12,15 @@
 @interface ProgressViewController : UIViewController {
 	IBOutlet UIButton *testButton;
 	IBOutlet UIProgressView *progressView;
+	NSArray *tests;
 }
 
 @property(nonatomic,retain) IBOutlet UIButton *testButton;
 @property(nonatomic,retain) IBOutlet UIProgressView *progressView;
+@property(nonatomic,retain) NSArray *tests;
 
-- (IBAction) runTest;
+- (IBAction) runTest:(id)sender;
+
++ (NSString *)pathToDatabase:(NSString *)fileName;
 
 @end

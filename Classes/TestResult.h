@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "sqlite3.h"
 
 @interface TestResult : NSObject {
+	sqlite3 *normalDb;
+	sqlite3 *encryptedDb;
 	NSString *name;
 	NSString *sql;
 	uint64_t normalNs;
@@ -20,5 +22,10 @@
 @property (nonatomic,retain) NSString *sql;
 @property (nonatomic) uint64_t normalNs;
 @property (nonatomic) uint64_t encryptedNs;
+
+-(id) initWithDb:(sqlite3 *)normal encrypted:(sqlite3 *)encrypted;
+-(void) setup;
+-(void) runTests;
+-(void) runTest:(sqlite3 *)db;
 
 @end
