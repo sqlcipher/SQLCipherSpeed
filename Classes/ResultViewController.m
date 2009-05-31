@@ -1,38 +1,21 @@
 //
-//  RootViewController.m
+//  ResultViewController.m
 //  SQLCipherSpeed
 //
 //  Created by Stephen Lombardo on 5/30/09.
 //  Copyright Zetetic LLC 2009. All rights reserved.
 //
 
-#import "RootViewController.h"
-#import "SQLCipherSpeedAppDelegate.h"
-#import "TestSuite.h"
+#import "ResultViewController.h"
 #import "TestResult.h"
 
-
-@implementation RootViewController
+@implementation ResultViewController
 @synthesize results, resultCell;
 
 - (void)dealloc {
 	[results release];
 	[resultCell release];
     [super dealloc];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-	
-	TestSuite *suite = [[TestSuite alloc] init];
-	[suite executeTest];
-	
-	self.results = suite.results;
-	[suite release];
 }
 
 - (void)didReceiveMemoryWarning {

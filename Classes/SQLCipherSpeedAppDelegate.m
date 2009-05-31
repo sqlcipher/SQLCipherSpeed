@@ -7,8 +7,6 @@
 //
 
 #import "SQLCipherSpeedAppDelegate.h"
-#import "RootViewController.h"
-
 
 @implementation SQLCipherSpeedAppDelegate
 

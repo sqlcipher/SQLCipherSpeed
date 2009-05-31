@@ -1,5 +1,5 @@
 //
-//  RootViewController.h
+//  ResultViewController.h
 //  SQLCipherSpeed
 //
 //  Created by Stephen Lombardo on 5/30/09.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TestResultCell.h"
 
-@interface RootViewController : UITableViewController {
+@interface ResultViewController : UITableViewController {
 	NSArray *results;
 	IBOutlet TestResultCell *resultCell;
 }

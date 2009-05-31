@@ -22,7 +22,7 @@
 
 - (id) init {
 	[super init];
-	results = [NSMutableArray arrayWithCapacity:10];
+	self.results = [NSMutableArray arrayWithCapacity:10];
 	return self;
 }
 
