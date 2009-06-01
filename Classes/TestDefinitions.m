@@ -249,7 +249,7 @@
 @implementation DropTableTest
 
 -(void) setup {
-	self.name = @"Drop 2 tables";
+	self.name = @"DROP 2 tables";
 	self.sql = @"DROP TABLE t1; DROP TABLE t2;";
 }
 

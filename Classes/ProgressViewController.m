@@ -12,17 +12,28 @@
 #import "sqlite3.h"
 
 @implementation ProgressViewController
-@synthesize testButton, progressView, tests;
+@synthesize testButton, progressView, testNumberLabel, testNameLabel, tests;
 
 - (void)dealloc {
 	[testButton release];
 	[progressView release];
+	[testNumberLabel release];
+	[testNameLabel release];
 	[tests release];
     [super dealloc];
 }
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+}
+
 - (IBAction) runTest:(id) sender {
+	
 	testButton.enabled = NO;
+	[testButton setTitle:@"Running" forState:UIControlStateDisabled];
+	testNameLabel.hidden = NO;
+	
 	CFRunLoopRunInMode (kCFRunLoopDefaultMode, 0, true);
 	
 	sqlite3 *normalDb;
@@ -54,12 +65,14 @@
 				  nil
 				  ];
 	
-	float count = (float) [tests count];
+	int count = [tests count];
 	
 	for(int i = 0; i < count; i++) {
 		SqlTest *test = (SqlTest *) [tests objectAtIndex:i];
 		[test runTests];
-		[progressView setProgress:(float) (i + 1) / count];
+		[progressView setProgress:(float) (i + 1) / (float) count];
+		testNumberLabel.text = [NSString stringWithFormat:@"Test %d of %d...", i+1, count];
+		testNameLabel.text = test.name;
 		CFRunLoopRunInMode (kCFRunLoopDefaultMode, 0, true);
 	}
 	
@@ -72,6 +85,10 @@
 	
 	
 	testButton.enabled = YES;
+	[testButton setTitle:@"Start" forState:UIControlStateNormal];
+	testNameLabel.hidden = YES;
+	testNumberLabel.text = @"Test Complete!";
+	
 	ResultViewController *rvc = [[ResultViewController alloc] initWithNibName:@"ResultViewController" bundle:[NSBundle mainBundle]];
 	rvc.results = tests;
 	[self.navigationController pushViewController:rvc animated:YES];
