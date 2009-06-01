@@ -6,11 +6,11 @@
 //  Copyright 2009 Zetetic LLC. All rights reserved.
 //
 
-#import "TestResult.h"
+#import "SqlTest.h"
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 
-@implementation TestResult
+@implementation SqlTest
 @synthesize name, sql, normalNs, encryptedNs;
 
 -(void) dealloc {

@@ -7,7 +7,7 @@
 //
 
 #import "ResultViewController.h"
-#import "TestResult.h"
+#import "SqlTest.h"
 
 @implementation ResultViewController
 @synthesize results, resultCell;
@@ -46,7 +46,7 @@
 		[[NSBundle mainBundle] loadNibNamed:@"TestResultCell" owner:self options:nil];
     }
     
-	TestResult *result = (TestResult *) [results objectAtIndex:indexPath.row];
+	SqlTest *result = (SqlTest *) [results objectAtIndex:indexPath.row];
     resultCell.nameLabel.text = result.name;
 	resultCell.sqlLabel.text = result.sql;
 	

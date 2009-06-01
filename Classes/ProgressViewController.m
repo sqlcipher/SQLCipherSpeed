@@ -28,13 +28,28 @@
 	sqlite3 *normalDb;
 	sqlite3 *encryptedDb;
 	
+	[[NSFileManager defaultManager] removeItemAtPath:[ProgressViewController pathToDatabase:@"normal.db"] error:NULL];
+	[[NSFileManager defaultManager] removeItemAtPath:[ProgressViewController pathToDatabase:@"encrypted.db"] error:NULL];
+	
 	sqlite3_open([[ProgressViewController pathToDatabase:@"normal.db"] UTF8String], &normalDb);
 	sqlite3_open([[ProgressViewController pathToDatabase:@"encrypted.db"] UTF8String], &encryptedDb);
 	
 	self.tests = [NSArray arrayWithObjects: 
+				  [[[PragmaKeyTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
 				  [[[CreateTableTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
 				  [[[InsertNoTransactionTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
 				  [[[InsertWithTransactionTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[SelectWithoutIndexTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[SelectOnStringCompareTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[CreateIndexTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[SelectWithIndexTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[UpdateWithoutIndexTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[UpdateWithIndexTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[InsertFromSelectTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[DeleteWithoutIndexTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[DeleteWithIndexTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[BigInsertAfterDeleteTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+				  [[[ManyInsertsAfterDeleteTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
 				  [[[DropTableTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
 				  nil
 				  ];
@@ -42,7 +57,7 @@
 	float count = (float) [tests count];
 	
 	for(int i = 0; i < count; i++) {
-		TestResult *test = [tests objectAtIndex:i];
+		SqlTest *test = (SqlTest *) [tests objectAtIndex:i];
 		[test runTests];
 		[progressView setProgress:(float) (i + 1) / count];
 		CFRunLoopRunInMode (kCFRunLoopDefaultMode, 0, true);

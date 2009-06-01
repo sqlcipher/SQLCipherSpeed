@@ -7,16 +7,53 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TestResult.h"
+#import "SqlTest.h"
+#import "IteratedSqlTest.h"
 
-@interface CreateTableTest : TestResult { }
+@interface PragmaKeyTest : SqlTest { }
 @end
 
-@interface InsertNoTransactionTest : TestResult { }
+@interface CreateTableTest : SqlTest { }
 @end
 
-@interface InsertWithTransactionTest : TestResult { }
+@interface InsertNoTransactionTest :  IteratedSqlTest{ }
 @end
 
-@interface DropTableTest : TestResult { }
+@interface InsertWithTransactionTest : IteratedSqlTest { }
+@end
+
+@interface SelectWithoutIndexTest : IteratedSqlTest { }
+@end
+
+@interface SelectOnStringCompareTest : IteratedSqlTest { }
+@end
+
+@interface CreateIndexTest : SqlTest { }
+@end
+
+@interface SelectWithIndexTest : IteratedSqlTest { }
+@end
+
+@interface UpdateWithoutIndexTest : IteratedSqlTest { }
+@end
+
+@interface UpdateWithIndexTest : IteratedSqlTest { }
+@end
+
+@interface InsertFromSelectTest : SqlTest { }
+@end
+
+@interface DeleteWithoutIndexTest : SqlTest { }
+@end
+
+@interface DeleteWithIndexTest : SqlTest { }
+@end
+
+@interface BigInsertAfterDeleteTest : SqlTest { }
+@end
+
+@interface ManyInsertsAfterDeleteTest : IteratedSqlTest { }
+@end
+
+@interface DropTableTest : SqlTest { }
 @end

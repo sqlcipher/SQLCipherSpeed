@@ -18,7 +18,8 @@
 		9032F1750FD22EEF001C16BA /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9032F1740FD22EEF001C16BA /* ProgressViewController.xib */; };
 		9032F17A0FD22F95001C16BA /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032F1790FD22F95001C16BA /* ProgressViewController.m */; };
 		9032F2380FD2378A001C16BA /* TestDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032F2370FD2378A001C16BA /* TestDefinitions.m */; };
-		90334B5B0FD0FC2000155FDE /* TestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 90334B5A0FD0FC2000155FDE /* TestResult.m */; };
+		9032F45C0FD2DB0F001C16BA /* IteratedSqlTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032F45B0FD2DB0F001C16BA /* IteratedSqlTest.m */; };
+		90334B5B0FD0FC2000155FDE /* SqlTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 90334B5A0FD0FC2000155FDE /* SqlTest.m */; };
 		90334B9A0FD162FE00155FDE /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90334B950FD162E400155FDE /* libsqlcipher.a */; };
 		90334B9B0FD162FE00155FDE /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90334B8E0FD162DA00155FDE /* libcrypto.a */; };
 		90334C3F0FD1684B00155FDE /* TestResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90334C3E0FD1684A00155FDE /* TestResultCell.m */; };
@@ -75,8 +76,10 @@
 		9032F1790FD22F95001C16BA /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		9032F2360FD2378A001C16BA /* TestDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDefinitions.h; sourceTree = "<group>"; };
 		9032F2370FD2378A001C16BA /* TestDefinitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDefinitions.m; sourceTree = "<group>"; };
-		90334B590FD0FC2000155FDE /* TestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestResult.h; sourceTree = "<group>"; };
-		90334B5A0FD0FC2000155FDE /* TestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestResult.m; sourceTree = "<group>"; };
+		9032F45A0FD2DB0F001C16BA /* IteratedSqlTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IteratedSqlTest.h; sourceTree = "<group>"; };
+		9032F45B0FD2DB0F001C16BA /* IteratedSqlTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IteratedSqlTest.m; sourceTree = "<group>"; };
+		90334B590FD0FC2000155FDE /* SqlTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlTest.h; sourceTree = "<group>"; };
+		90334B5A0FD0FC2000155FDE /* SqlTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlTest.m; sourceTree = "<group>"; };
 		90334B880FD162DA00155FDE /* openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openssl.xcodeproj; path = "../openssl-0.9.8k/openssl.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		90334B8F0FD162E400155FDE /* sqlcipher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sqlcipher.xcodeproj; path = ../sqlcipher/sqlcipher.xcodeproj; sourceTree = SOURCE_ROOT; };
 		90334C3D0FD1684A00155FDE /* TestResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestResultCell.h; sourceTree = "<group>"; };
@@ -107,14 +110,16 @@
 				28C286E00D94DF7D0034E888 /* ResultViewController.m */,
 				1D3623240D0F684500981E51 /* SQLCipherSpeedAppDelegate.h */,
 				1D3623250D0F684500981E51 /* SQLCipherSpeedAppDelegate.m */,
-				90334B590FD0FC2000155FDE /* TestResult.h */,
-				90334B5A0FD0FC2000155FDE /* TestResult.m */,
+				90334B590FD0FC2000155FDE /* SqlTest.h */,
+				90334B5A0FD0FC2000155FDE /* SqlTest.m */,
 				90334C3D0FD1684A00155FDE /* TestResultCell.h */,
 				90334C3E0FD1684A00155FDE /* TestResultCell.m */,
 				9032F1780FD22F95001C16BA /* ProgressViewController.h */,
 				9032F1790FD22F95001C16BA /* ProgressViewController.m */,
 				9032F2360FD2378A001C16BA /* TestDefinitions.h */,
 				9032F2370FD2378A001C16BA /* TestDefinitions.m */,
+				9032F45A0FD2DB0F001C16BA /* IteratedSqlTest.h */,
+				9032F45B0FD2DB0F001C16BA /* IteratedSqlTest.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -283,10 +288,11 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* SQLCipherSpeedAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* ResultViewController.m in Sources */,
-				90334B5B0FD0FC2000155FDE /* TestResult.m in Sources */,
+				90334B5B0FD0FC2000155FDE /* SqlTest.m in Sources */,
 				90334C3F0FD1684B00155FDE /* TestResultCell.m in Sources */,
 				9032F17A0FD22F95001C16BA /* ProgressViewController.m in Sources */,
 				9032F2380FD2378A001C16BA /* TestDefinitions.m in Sources */,
+				9032F45C0FD2DB0F001C16BA /* IteratedSqlTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
