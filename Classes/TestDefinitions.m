@@ -10,6 +10,9 @@
 
 @implementation PragmaKeyTest
 
+#define KEY "PRAGMA key = 'xyz';"
+//#define KEY "PRAGMA key = \"x'98483C6EB40B6C31A448C22A66DED3B5E5E8D5119CAC8327B655C8B5C4836481'\";"
+
 -(void) setup {
 	self.name = @"Set Encryption Key";
 	self.sql = @"PRAGMA key = 'xyz'; SELECT count(*) FROM sqlite_master;";
@@ -17,8 +20,7 @@
 
 -(void) runTest:(sqlite3 *)db {
 	if(db == encryptedDb) {
-		sqlite3_exec(encryptedDb, "PRAGMA key = 'my cool key';", NULL, NULL, NULL);
-		//sqlite3_exec(encryptedDb, "PRAGMA key = \"x'98483C6EB40B6C31A448C22A66DED3B5E5E8D5119CAC8327B655C8B5C4836481'\";", NULL, NULL, NULL);
+		sqlite3_exec(encryptedDb, KEY, NULL, NULL, NULL);
 	}
 	sqlite3_exec(db, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
 }

@@ -69,11 +69,11 @@
 	
 	for(int i = 0; i < count; i++) {
 		SqlTest *test = (SqlTest *) [tests objectAtIndex:i];
-		[test runTests];
-		[progressView setProgress:(float) (i + 1) / (float) count];
 		testNumberLabel.text = [NSString stringWithFormat:@"Test %d of %d...", i+1, count];
 		testNameLabel.text = test.name;
 		CFRunLoopRunInMode (kCFRunLoopDefaultMode, 0, true);
+		[test runTests];
+		[progressView setProgress:(float) (i + 1) / (float) count];
 	}
 	
 	// close database files cleanly and remove the database itself
