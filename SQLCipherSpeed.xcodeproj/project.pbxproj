@@ -32,21 +32,21 @@
 /* Begin PBXContainerItemProxy section */
 		90288D520FEB3918001D0942 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcodeproj */;
+			containerPortal = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcode */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = sqlcipher;
 		};
 		905CD6D1130F0DBC00E81E38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcodeproj */;
+			containerPortal = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcode */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = sqlcipher;
 		};
 		90C0F6ED0FD4267B002B1F84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcodeproj */;
+			containerPortal = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcode */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = sqlcipher;
@@ -103,7 +103,7 @@
 		905CD64D130F03CB00E81E38 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		905CD64E130F03CB00E81E38 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		905CD66E130F05CD00E81E38 /* LogicTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogicTest.m; sourceTree = "<group>"; };
-		90C0F6DC0FD42676002B1F84 /* sqlcipher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = sqlcipher.xcodeproj; sourceTree = SQLCIPHER_SRC; };
+		90C0F6DC0FD42676002B1F84 /* sqlcipher.xcode */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sqlcipher.xcode; path = ../sqlcipher/sqlcipher.xcodeproj; sourceTree = SOURCE_ROOT; };
 		90C9AFE71326A1B400693CC5 /* openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openssl.xcodeproj; path = "../openssl-xcode/openssl.xcodeproj"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -167,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				90C9AFE71326A1B400693CC5 /* openssl.xcodeproj */,
-				90C0F6DC0FD42676002B1F84 /* sqlcipher.xcodeproj */,
+				90C0F6DC0FD42676002B1F84 /* sqlcipher.xcode */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -292,7 +292,7 @@
 				},
 				{
 					ProductGroup = 90C0F6E90FD4267B002B1F84 /* Products */;
-					ProjectRef = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcodeproj */;
+					ProjectRef = 90C0F6DC0FD42676002B1F84 /* sqlcipher.xcode */;
 				},
 			);
 			projectRoot = "";
@@ -517,7 +517,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
@@ -531,6 +533,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
