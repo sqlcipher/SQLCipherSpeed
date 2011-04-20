@@ -9,19 +9,25 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ProgressViewController : UIViewController {
+@interface ProgressViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	IBOutlet UIButton *testButton;
 	IBOutlet UIProgressView *progressView;
 	IBOutlet UILabel *testNumberLabel;
-	IBOutlet UILabel *testNameLabel;
+    IBOutlet UITableView *tableView;
 	NSArray *tests;
+    NSMutableArray *resultSets;
+    NSDictionary *averageResultSet;
+    BOOL calculatingAverages;
 }
 
 @property(nonatomic,retain) IBOutlet UIButton *testButton;
 @property(nonatomic,retain) IBOutlet UIProgressView *progressView;
 @property(nonatomic,retain) IBOutlet UILabel *testNumberLabel;
-@property(nonatomic,retain) IBOutlet UILabel *testNameLabel;
+@property(nonatomic,retain) IBOutlet UITableView *tableView;
 @property(nonatomic,retain) NSArray *tests;
+@property(nonatomic,retain) NSMutableArray *resultSets;
+@property(nonatomic,retain) NSDictionary *averageResultSet;
+@property(nonatomic) BOOL calculatingAverages;
 
 - (IBAction) runTest:(id)sender;
 

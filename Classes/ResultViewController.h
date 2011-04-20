@@ -12,8 +12,13 @@
 @interface ResultViewController : UITableViewController {
 	NSArray *results;
 	IBOutlet TestResultCell *resultCell;
+    NSDate *testDate;
+    BOOL displayingAverages;
 }
 
 @property(nonatomic,retain) NSArray *results;
 @property(nonatomic,retain) IBOutlet TestResultCell *resultCell;
+@property(nonatomic,retain) NSDate *testDate;
+@property(nonatomic) BOOL displayingAverages;
+
 @end

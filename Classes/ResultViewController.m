@@ -10,9 +10,15 @@
 #import "SqlTest.h"
 
 @implementation ResultViewController
-@synthesize results, resultCell;
+@synthesize results, resultCell, testDate, displayingAverages;
+
+- (void)awakeFromNib
+{
+    displayingAverages = NO;
+}
 
 - (void)dealloc {
+    [testDate release];
 	[results release];
 	[resultCell release];
     [super dealloc];
@@ -21,6 +27,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
+}
+
+- (void)viewDidLoad
+{
+    //self.navigationItem.backBarButtonItem.title = @"Test";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.navigationItem.title = [NSDate stringForDisplayFromDate:testDate];
 }
 
 #pragma mark Table view methods
@@ -50,22 +67,17 @@
     resultCell.nameLabel.text = result.name;
 	resultCell.sqlLabel.text = result.sql;
 	
-	int normalMs = result.normalNs / 1000000; // convert to millisconds
-	int encryptedMs = result.encryptedNs / 1000000;
-	resultCell.normalTimeLabel.text = [NSString stringWithFormat:@"%d ms",  normalMs];
-	resultCell.encryptedTimeLabel.text = [NSString stringWithFormat:@"%d ms", encryptedMs];
-	resultCell.slowDownLabel.text = [NSString stringWithFormat:@"%.1f%%", ((double) (encryptedMs - normalMs) / (double) normalMs) * 100.0];
-
+	resultCell.normalTimeLabel.text = [NSString stringWithFormat:@"%d ms",  result.sqliteResult];
+	resultCell.encryptedTimeLabel.text = [NSString stringWithFormat:@"%d ms", result.sqlcipherResult];
+	resultCell.slowDownLabel.text = [NSString stringWithFormat:@"%.1f%%", result.sqlcipherImpact];
+    
     return resultCell;
-	
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
-
 
 @end
 
