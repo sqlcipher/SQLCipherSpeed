@@ -181,7 +181,7 @@
 - (void)_generateAverages
 {
     calculatingAverages = YES;
-    //[tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_AVG] withRowAnimation:YES];
+    [tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_AVG] withRowAnimation:NO];
     
     // perform tests on a dispatch queue to avoid blocking main thread
 	dispatch_queue_t defaultQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -194,7 +194,7 @@
 - (void)_finishGeneratingAverages
 {
     calculatingAverages = NO;
-    //[tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_AVG] withRowAnimation:YES];
+    [tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_AVG] withRowAnimation:YES];
 }
 
 - (void)_updateUIStartedTest:(SqlTest *)test
@@ -274,15 +274,16 @@
     }
     else
     {
-        cell.textLabel.text = @"Averaged Results";
         if (calculatingAverages)
         {
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             [spinner startAnimating];
             cell.accessoryView = spinner;
+            cell.textLabel.text = @"Recalculating";
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = @"Averaged Results";
         }
     }
 
