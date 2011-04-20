@@ -163,7 +163,7 @@
     NSDictionary *dict = [resultSets objectAtIndex:0];
     
     // update tableView to match results array
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:SECTION_PREV];
     [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     
     testButton.enabled = YES;
