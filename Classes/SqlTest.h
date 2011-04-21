@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
 
-@interface SqlTest : NSObject <NSCoding> {
+@interface SqlTest : NSObject <NSCoding, NSCopying> {
 	sqlite3 *normalDb;
 	sqlite3 *encryptedDb;
 	NSString *name;

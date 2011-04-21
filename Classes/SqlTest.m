@@ -32,6 +32,17 @@
 	[super dealloc];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    SqlTest *newObject = [[[self class] alloc] init];
+    newObject.name = self.name;
+    newObject.sql = self.sql;
+    newObject.normalNs = self.normalNs;
+    newObject.encryptedNs = self.encryptedNs;
+    newObject.nick = self.nick;
+    return newObject;
+}
+
 - (void)encodeWithCoder: (NSCoder *)coder
 {
 	[coder encodeObject:[self name] forKey:@"name"];
