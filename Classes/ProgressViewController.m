@@ -381,7 +381,7 @@
     {
         NSDictionary *resultSet = (NSDictionary *)[resultSets objectAtIndex:indexPath.row];
         NSDate *date = (NSDate *)[resultSet objectForKey:RESULTSET_KEY_DATE];
-        cell.textLabel.text = [NSDate stringForDisplayFromDate:date];
+        cell.textLabel.text = [NSDate stringForDisplayFromDate:date prefixed:NO alwaysDisplayTime:YES];
         NSNumber *pageSizeNumber = (NSNumber *)[resultSet objectForKey:RESULTSET_KEY_PAGESZ];
         if ([pageSizeNumber intValue] == 0)
             cell.detailTextLabel.text = nil;
