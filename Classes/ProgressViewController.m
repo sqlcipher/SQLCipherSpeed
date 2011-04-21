@@ -24,7 +24,7 @@
 - (void)_showResultSet:(NSDictionary *)dict;
 - (void)_updateUIStartedTest:(SqlTest *)test;
 - (void)_updateUIStoppedTest:(SqlTest *)test;
-- (void)_finishRun;
+- (void)_finishRun:(NSDictionary *)dict;
 - (void)_generateAverages;
 - (void)_finishGeneratingAverages;
 @end
@@ -148,19 +148,17 @@
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:tests, RESULTSET_KEY_TESTS, 
                               [NSDate date], RESULTSET_KEY_DATE, nil];
         
-        // insert at top of the list
-        [resultSets insertObject:dict atIndex:0];
-        
-        // save to file
-        [self _saveResults];
-        
-		[self performSelectorOnMainThread:@selector(_finishRun) withObject:nil waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(_finishRun:) withObject:dict waitUntilDone:NO];
 	});
 }
 
-- (void)_finishRun
+- (void)_finishRun:(NSDictionary *)dict
 {
-    NSDictionary *dict = [resultSets objectAtIndex:0];
+    // insert at top of the list
+    [resultSets insertObject:dict atIndex:0];
+    
+    // save to file
+    [self _saveResults];
     
     // update tableView to match results array
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:SECTION_PREV];
@@ -170,10 +168,11 @@
     [testButton setTitle:@"Start" forState:UIControlStateNormal];
     testNumberLabel.text = @"Test Complete!";
     
-    if ([resultSets count] < 3)
-    {
-        [self _showResultSet:dict];
-    }
+    // if there aren't more than three yet, just push this one into view...
+//    if ([resultSets count] <= 3)
+//    {
+//        [self _showResultSet:dict];
+//    }
     
     [self _generateAverages];
 }
@@ -186,7 +185,34 @@
     // perform tests on a dispatch queue to avoid blocking main thread
 	dispatch_queue_t defaultQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 	dispatch_async(defaultQueue, ^{
-        sleep(5);
+        
+        NSUInteger  count = [tests count];
+        uint64_t    sqliteTimes [count];
+        uint64_t    sqlcipherTimes [count];
+        NSMutableArray *averages = [NSMutableArray arrayWithCapacity:count];
+        
+        for (int i = 0; i < count; i++)
+        {
+            SqlTest *t          = [tests objectAtIndex:i];
+            sqliteTimes[i]      = sqliteTimes[i] + t.normalNs;
+            sqlcipherTimes[i]   = sqlcipherTimes[i] + t.encryptedNs;
+        }
+        
+        for (int j = 0; j < count; j++)
+        {
+            SqlTest *t              = [[tests objectAtIndex:j] copy];
+            t.normalNs       = sqliteTimes[j] / count;
+            t.encryptedNs    = sqlcipherTimes[j] / count;
+
+            [averages addObject:t];
+            [t release];
+        }
+        
+        self.averageResultSet = [NSDictionary dictionaryWithObjectsAndKeys:averages, RESULTSET_KEY_TESTS,
+                                 [NSDate date], RESULTSET_KEY_DATE, nil];
+        
+        sleep(2);
+
         [self performSelectorOnMainThread:@selector(_finishGeneratingAverages) withObject:nil waitUntilDone:NO];
     });
 }
@@ -194,7 +220,7 @@
 - (void)_finishGeneratingAverages
 {
     calculatingAverages = NO;
-    [tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_AVG] withRowAnimation:YES];
+    [tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_AVG] withRowAnimation:NO];
 }
 
 - (void)_updateUIStartedTest:(SqlTest *)test
@@ -271,6 +297,7 @@
         NSDate *date = [resultSet objectForKey:RESULTSET_KEY_DATE];
         cell.textLabel.text = [NSDate stringForDisplayFromDate:date];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = nil;
     }
     else
     {
@@ -282,6 +309,7 @@
             cell.textLabel.text = @"Recalculating";
         }
         else {
+            cell.accessoryView = nil;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = @"Averaged Results";
         }
@@ -299,9 +327,9 @@
     }
     else
     {
-        
+        if (!calculatingAverages)
+            [self _showResultSet:averageResultSet];
     }
-    
     [aTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
