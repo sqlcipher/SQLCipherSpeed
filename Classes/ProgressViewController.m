@@ -189,9 +189,12 @@
         NSUInteger  count = [tests count];
         uint64_t    sqliteTimes [count];
         uint64_t    sqlcipherTimes [count];
-        
-        NSMutableArray *averages = [NSMutableArray arrayWithCapacity:count];
-        
+        // initialize them so we're adding from zero and not garbage
+        for (int i=0; i<count; i++)
+        {
+            sqliteTimes[i]      = 0;
+            sqlcipherTimes[i]   = 0;
+        }
         for (NSDictionary *dict in self.resultSets)
         {
             NSLog(@"processing result set %@", [dict objectForKey:RESULTSET_KEY_DATE]);
@@ -206,6 +209,7 @@
             }
         }
         
+        NSMutableArray *averages = [NSMutableArray arrayWithCapacity:count];
         for (int j = 0; j < count; j++)
         {
             SqlTest *t       = [[tests objectAtIndex:j] copy];
