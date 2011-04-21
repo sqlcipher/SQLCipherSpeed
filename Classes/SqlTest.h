@@ -24,16 +24,14 @@
 @property (nonatomic) uint64_t normalNs;
 @property (nonatomic) uint64_t encryptedNs;
 @property (nonatomic,retain) NSString *nick;
-@property (nonatomic,readonly) int sqliteResult;
-@property (nonatomic,readonly) int sqlcipherResult;
-@property (nonatomic,readonly) float sqlcipherImpact;
+@property (nonatomic) int sqliteResult;
+@property (nonatomic) int sqlcipherResult;
+@property (nonatomic,readonly) double sqlcipherImpact;
 
 -(id) initWithDb:(sqlite3 *)normal encrypted:(sqlite3 *)encrypted;
 -(void) setup;
 -(void) runTests;
 -(void) runTest:(sqlite3 *)db;
-- (int)sqliteResult;
-- (int)sqlcipherResult;
-- (float)sqlcipherImpact;
+- (double)sqlcipherImpact;
 
 @end

@@ -189,20 +189,31 @@
         NSUInteger  count = [tests count];
         uint64_t    sqliteTimes [count];
         uint64_t    sqlcipherTimes [count];
+        
         NSMutableArray *averages = [NSMutableArray arrayWithCapacity:count];
         
-        for (int i = 0; i < count; i++)
+        for (NSDictionary *dict in self.resultSets)
         {
-            SqlTest *t          = [tests objectAtIndex:i];
-            sqliteTimes[i]      = sqliteTimes[i] + t.normalNs;
-            sqlcipherTimes[i]   = sqlcipherTimes[i] + t.encryptedNs;
+            NSLog(@"processing result set %@", [dict objectForKey:RESULTSET_KEY_DATE]);
+            for (int i = 0; i < count; i++)
+            {
+                NSArray *results    = (NSArray *)[dict objectForKey:RESULTSET_KEY_TESTS];
+                SqlTest *t          = [results objectAtIndex:i];
+                sqliteTimes[i]      = sqliteTimes[i] + t.normalNs;
+                sqlcipherTimes[i]   = sqlcipherTimes[i] + t.encryptedNs;
+                if (i == 2)
+                    NSLog(@"sqlite: %llu, sqlcipher: %llu", sqliteTimes[i], sqlcipherTimes[i]);
+            }
         }
         
         for (int j = 0; j < count; j++)
         {
-            SqlTest *t              = [[tests objectAtIndex:j] copy];
-            t.normalNs       = sqliteTimes[j] / count;
-            t.encryptedNs    = sqlcipherTimes[j] / count;
+            SqlTest *t       = [[tests objectAtIndex:j] copy];
+            t.normalNs       = floorl(sqliteTimes[j] / count);
+            t.encryptedNs    = floorl(sqlcipherTimes[j] / count);
+            
+            if (j == 2)
+                NSLog(@"sqlite: %llu, sqlcipher: %llu", t.normalNs, t.encryptedNs);
 
             [averages addObject:t];
             [t release];
@@ -210,8 +221,6 @@
         
         self.averageResultSet = [NSDictionary dictionaryWithObjectsAndKeys:averages, RESULTSET_KEY_TESTS,
                                  [NSDate date], RESULTSET_KEY_DATE, nil];
-        
-        sleep(2);
 
         [self performSelectorOnMainThread:@selector(_finishGeneratingAverages) withObject:nil waitUntilDone:NO];
     });
