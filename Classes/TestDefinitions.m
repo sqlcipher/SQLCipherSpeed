@@ -13,6 +13,17 @@
 #define KEY "PRAGMA key = 'xyz';"
 //#define KEY "PRAGMA key = \"x'98483C6EB40B6C31A448C22A66DED3B5E5E8D5119CAC8327B655C8B5C4836481'\";"
 
+@synthesize pageSize;
+
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        pageSize = 0;
+    }
+    return self;
+}
+
 -(void) setup {
 	self.name = @"Set Encryption Key";
 	self.sql = @"PRAGMA key = 'xyz'; SELECT count(*) FROM sqlite_master;";
@@ -20,6 +31,13 @@
 
 -(void) runTest:(sqlite3 *)db {
 	if(db == encryptedDb) {
+        // if the pageSize property was set, use it instead of the sqlite default
+        if (pageSize > 0)
+        {
+            NSString *pageSizeSQL = [NSString stringWithFormat:@"PRAGMA cipher_page_size = %d;", pageSize];
+            NSLog(@"setting non-standard pageSize with: %@", pageSizeSQL);
+            sqlite3_exec(encryptedDb, [pageSizeSQL UTF8String], NULL, NULL, NULL);
+        }
 		sqlite3_exec(encryptedDb, KEY, NULL, NULL, NULL);
 	}
 	sqlite3_exec(db, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);

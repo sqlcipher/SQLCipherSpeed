@@ -10,7 +10,10 @@
 #import "SqlTest.h"
 #import "IteratedSqlTest.h"
 
-@interface PragmaKeyTest : SqlTest { }
+@interface PragmaKeyTest : SqlTest { 
+    NSInteger pageSize;
+}
+@property (nonatomic) NSInteger pageSize;
 @end
 
 @interface CreateTableTest : SqlTest { }

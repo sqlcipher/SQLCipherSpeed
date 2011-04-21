@@ -13,6 +13,7 @@
 
 #define RESULTSET_KEY_DATE @"date"
 #define RESULTSET_KEY_TESTS @"tests"
+#define RESULTSET_KEY_PAGESZ @"pagesz"
 #define RESULTS_FILE_NAME @"results.plist"
 
 #define SECTION_AVG 0
@@ -36,8 +37,12 @@
 @synthesize tableView;
 @synthesize averageResultSet;
 @synthesize calculatingAverages;
+@synthesize headerView;
+@synthesize pageSizeField;
 
 - (void)dealloc {
+    [pageSizeField release];
+    [headerView release];
     [averageResultSet release];
     [resultSets release];
 	[testButton release];
@@ -77,14 +82,66 @@
             [sortByDate release];
         }
     }
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Tests" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Tests" 
+                                                                   style:UIBarButtonItemStyleBordered 
+                                                                  target:nil 
+                                                                  action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     [backButton release];
+    // put an edit button on the right
+    self.navigationItem.rightBarButtonItem = [self editButtonItem];
+    // reset button on the left
+    UIBarButtonItem *lbi = [[UIBarButtonItem alloc] initWithTitle:@"Reset" 
+                                                            style:UIBarButtonItemStyleBordered 
+                                                           target:self 
+                                                           action:@selector(reset:)];
+    self.navigationItem.leftBarButtonItem = lbi;
+    [lbi release];
+    // setup the table header view
+    self.headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    [tableView setEditing:editing animated:YES];
+    if (editing) {
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+        testButton.enabled = NO;
+    } else {
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        testButton.enabled = YES;
+    }
+}
+
+- (IBAction)reset:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Confirm Reset" 
+						  message:@"All result sets will be deleted, are you certain you want to reset SQLCipher Speed?" 
+						  delegate:self 
+						  cancelButtonTitle:@"Cancel" 
+						  otherButtonTitles:@"Reset", nil];
+	[alert show];
+	[alert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        // ditch the results we've got
+        self.resultSets = [NSMutableArray array];
+        [self _saveResults];
+        [self.tableView reloadData];
+        // reset the pageSize field so that it's nil
+        self.pageSizeField.text = nil;
+    }
 }
 
 - (IBAction)runTest:(id) sender {
@@ -104,9 +161,15 @@
         
         sqlite3_open([[ProgressViewController pathToDatabase:@"normal.db"] UTF8String], &normalDb);
         sqlite3_open([[ProgressViewController pathToDatabase:@"encrypted.db"] UTF8String], &encryptedDb);
-        
+        PragmaKeyTest *keyTest = [[[PragmaKeyTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease];
+        NSString *str = [pageSizeField text];
+        if (str)
+        {
+            // intValue returns zero if the user enters non-numeric text
+            [keyTest setPageSize:[str intValue]];
+        }        
         self.tests = [NSArray arrayWithObjects: 
-                      [[[PragmaKeyTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+                      keyTest,
                       [[[CreateTableTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
                       [[[InsertNoTransactionTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
                       [[[InsertWithTransactionTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
@@ -142,7 +205,10 @@
         [[NSFileManager defaultManager] removeItemAtPath:[ProgressViewController pathToDatabase:@"encrypted.db"] error:NULL];
         
         // store the result set for later by adding it to our list...
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:tests, RESULTSET_KEY_TESTS, 
+        // be clever about storing the page size (argh)
+        NSNumber *pgSizeNumber = [NSNumber numberWithInt:[str intValue]];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:tests, RESULTSET_KEY_TESTS,
+                              pgSizeNumber, RESULTSET_KEY_PAGESZ,
                               [NSDate date], RESULTSET_KEY_DATE, nil];
         
 		[self performSelectorOnMainThread:@selector(_finishRun:) withObject:dict waitUntilDone:NO];
@@ -248,6 +314,16 @@
         NSLog(@"%s: Failed to archive data to %@", __func__, resultsFilePath);
 }
 
+- (void)_showResultSet:(NSDictionary *)dict
+{
+    ResultViewController *rvc = [[ResultViewController alloc] initWithNibName:@"ResultViewController" bundle:[NSBundle mainBundle]];
+    rvc.displayingAverages = NO;
+	rvc.results = [dict objectForKey:RESULTSET_KEY_TESTS];
+    rvc.testDate = [dict objectForKey:RESULTSET_KEY_DATE];
+	[self.navigationController pushViewController:rvc animated:YES];
+	[rvc release];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
@@ -257,6 +333,15 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	return [documentsDirectory stringByAppendingPathComponent:fileName];
+}
+
+#pragma mark -
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark -
@@ -289,19 +374,25 @@
     
 	UITableViewCell *cell = (UITableViewCell *) [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     if (indexPath.section == SECTION_PREV)
     {
         NSDictionary *resultSet = (NSDictionary *)[resultSets objectAtIndex:indexPath.row];
-        NSDate *date = [resultSet objectForKey:RESULTSET_KEY_DATE];
+        NSDate *date = (NSDate *)[resultSet objectForKey:RESULTSET_KEY_DATE];
         cell.textLabel.text = [NSDate stringForDisplayFromDate:date];
+        NSNumber *pageSizeNumber = (NSNumber *)[resultSet objectForKey:RESULTSET_KEY_PAGESZ];
+        if ([pageSizeNumber intValue] == 0)
+            cell.detailTextLabel.text = nil;
+        else
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"page size: %d", [pageSizeNumber intValue]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.accessoryView = nil;
     }
     else
     {
+        cell.detailTextLabel.text = nil;
         if (calculatingAverages)
         {
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -334,14 +425,20 @@
     [aTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)_showResultSet:(NSDictionary *)dict
-{
-    ResultViewController *rvc = [[ResultViewController alloc] initWithNibName:@"ResultViewController" bundle:[NSBundle mainBundle]];
-    rvc.displayingAverages = NO;
-	rvc.results = [dict objectForKey:RESULTSET_KEY_TESTS];
-    rvc.testDate = [dict objectForKey:RESULTSET_KEY_DATE];
-	[self.navigationController pushViewController:rvc animated:YES];
-	[rvc release];
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == SECTION_AVG)
+        return UITableViewCellEditingStyleNone;
+    else // only makes sense to allow delete of stored data...
+        return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If row is deleted, remove it from the list.
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [resultSets removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self _saveResults];
+    }
 }
 
 @end
