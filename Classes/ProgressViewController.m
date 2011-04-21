@@ -64,17 +64,14 @@
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     NSString *resultsFilePath = [[self _documentsDirectoryString] stringByAppendingPathComponent: RESULTS_FILE_NAME];
-    NSLog(@"looking for results file at %@...", resultsFilePath);
     
     NSFileManager *fm = [NSFileManager defaultManager];
     
     if ([fm fileExistsAtPath:resultsFilePath])
     {
-        NSLog(@"found results file, slurping it in...");
         NSArray *fileResults = [NSKeyedUnarchiver unarchiveObjectWithFile:resultsFilePath];
         if (fileResults) 
         {
-            NSLog(@"sorting the results");
             NSSortDescriptor *sortByDate = [[NSSortDescriptor alloc] initWithKey:RESULTSET_KEY_DATE ascending:NO];
             self.resultSets = [[fileResults sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortByDate]] mutableCopy];
             [sortByDate release];
@@ -168,11 +165,11 @@
     [testButton setTitle:@"Start" forState:UIControlStateNormal];
     testNumberLabel.text = @"Test Complete!";
     
-    // if there aren't more than three yet, just push this one into view...
-//    if ([resultSets count] <= 3)
-//    {
-//        [self _showResultSet:dict];
-//    }
+    // if there's only one result set, just push it into view...
+    if ([resultSets count] == 1)
+    {
+        [self _showResultSet:dict];
+    }
     
     [self _generateAverages];
 }
@@ -197,15 +194,12 @@
         }
         for (NSDictionary *dict in self.resultSets)
         {
-            NSLog(@"processing result set %@", [dict objectForKey:RESULTSET_KEY_DATE]);
             for (int i = 0; i < count; i++)
             {
                 NSArray *results    = (NSArray *)[dict objectForKey:RESULTSET_KEY_TESTS];
                 SqlTest *t          = [results objectAtIndex:i];
                 sqliteTimes[i]      = sqliteTimes[i] + t.normalNs;
                 sqlcipherTimes[i]   = sqlcipherTimes[i] + t.encryptedNs;
-                if (i == 2)
-                    NSLog(@"sqlite: %llu, sqlcipher: %llu", sqliteTimes[i], sqlcipherTimes[i]);
             }
         }
         
@@ -215,10 +209,6 @@
             SqlTest *t       = [[tests objectAtIndex:j] copy];
             t.normalNs       = floorl(sqliteTimes[j] / count);
             t.encryptedNs    = floorl(sqlcipherTimes[j] / count);
-            
-            if (j == 2)
-                NSLog(@"sqlite: %llu, sqlcipher: %llu", t.normalNs, t.encryptedNs);
-
             [averages addObject:t];
             [t release];
         }
@@ -252,7 +242,6 @@
 {
     NSString *resultsFilePath = [[self _documentsDirectoryString] stringByAppendingPathComponent: RESULTS_FILE_NAME];
     
-    NSLog(@"data to archive: %@", resultSets);
     BOOL result = [NSKeyedArchiver archiveRootObject:resultSets
                                               toFile:resultsFilePath];
     if (!result)
@@ -294,9 +283,8 @@
 }
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"fetching cellForRow %d", indexPath.row);
-    
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
+
     static NSString *CellIdentifier = @"ResultSetCell";
     
 	UITableViewCell *cell = (UITableViewCell *) [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
