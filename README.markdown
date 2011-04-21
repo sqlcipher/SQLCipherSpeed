@@ -19,7 +19,7 @@ You'll also need to create a recursive source tree in your XCode Preferences nam
 
 ## Cipher Page Size
 
-There's a textfield on the main screen for running the tests, labeled "Page Size." Currently it doesn't do anything on the latest stable version of SQLCipher, but it does get used by the next version currently in development, SQLCipher branch v2beta, which allows the user to do something like `PRAGMA cipher_page_size=1024` to set a custom page size.
+There's a textfield on the main screen for running the tests, labeled "Page Size." Currently it doesn't do anything on the latest stable version of SQLCipher, but it does get used by the next version currently in development, [SQLCipher branch v2beta](https://github.com/sjlombardo/sqlcipher/tree/v2beta), which allows the user to do something like `PRAGMA cipher_page_size=1024` to set a custom page size.
 
 ## Need help? Want to help?
 
