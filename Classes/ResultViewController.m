@@ -29,15 +29,13 @@
     // Release anything that's not essential, such as cached data
 }
 
-- (void)viewDidLoad
-{
-    //self.navigationItem.backBarButtonItem.title = @"Test";
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationItem.title = [NSDate stringForDisplayFromDate:testDate];
+    if (displayingAverages)
+        self.navigationItem.title = @"Averages";
+    else
+        self.navigationItem.title = [NSDate stringForDisplayFromDate:testDate];
 }
 
 #pragma mark Table view methods
