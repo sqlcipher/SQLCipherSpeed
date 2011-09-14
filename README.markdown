@@ -6,16 +6,29 @@ This fork of the project is a bit of a build-out for the main fork, it stores an
 
 ## iOS 4 Only
 
-**Please Note:** This fork of SQLCipherSpeed requires iOS 4 because it makes use of blocks and Grand Central Dispatch to run the tests without blocking the main run loop. It does not run on iOS 3. 
+**Please Note:** This fork of SQLCipherSpeed requires iOS 4 because it makes use of blocks and Grand Central Dispatch to run the tests without blocking the main run loop. It is not currently compatible with iOS 3 (but if you want to try patching that in, feel free to fork, hack it out, and send us a pull request.)
 
-## Building
+## Prerequisites for Building
 
-Before you go building this project in XCode, you'll need to load up the submodules used, e.g.:
+Before you build this project, you'll need to load up the submodules used, e.g.:
 
+    $ git clone git://github.com/billymeltdown/SQLCipherSpeed.git
+    $ cd SQLCipherSpeed
     $ git submodule init
     $ git submodule update
     
-You'll also need to create a recursive source tree in your XCode Preferences named OPENSSL_SRC that points to a checkout of the latest OpenSSL source on your workstation. 
+You'll also need to create a recursive source tree in your XCode Preferences named `OPENSSL_SRC` that points to a checkout of the latest OpenSSL source on your workstation. *Check http://openssl.org/source/ for the latest version, below is just an example.*
+
+    $ curl -C - -O http://openssl.org/source/openssl-1.0.0e.tar.gz
+    $ tar xf openssl-1.0.0e.tar.gz
+    $ cd openssl-1.0.0e
+    $ pwd
+
+Setting up the source tree:
+
+1. Copy the output of the `pwd` command above to your clipboard, make sure you get the whole path
+2. In Xcode, navigate to Preferences -> Source Trees
+3. Use the + button to create a new one, name it OPENSSL_SRC, and paste the path to OpenSSL from your clipboard
 
 ## Cipher Page Size
 
