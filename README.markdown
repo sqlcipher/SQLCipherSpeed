@@ -17,7 +17,7 @@ Before you build this project, you'll need to load up the submodules used, e.g.:
     $ git submodule init
     $ git submodule update
     
-You'll also need to create a recursive source tree in your XCode Preferences named `OPENSSL_SRC` that points to a checkout of the latest OpenSSL source on your workstation. *Check http://openssl.org/source/ for the latest version, below is just an example.*
+You'll also need to create a source tree in your XCode Preferences named `OPENSSL_SRC` that points to a checkout of the latest OpenSSL source on your workstation. *Check http://openssl.org/source/ for the latest version, below is just an example.*
 
     $ curl -C - -O http://openssl.org/source/openssl-1.0.0e.tar.gz
     $ tar xf openssl-1.0.0e.tar.gz
