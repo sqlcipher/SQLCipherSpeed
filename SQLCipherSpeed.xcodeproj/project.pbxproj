@@ -65,8 +65,6 @@
 /* Begin PBXFileReference section */
 		13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sqlcipher.xcodeproj; path = sqlcipher/sqlcipher.xcodeproj; sourceTree = "<group>"; };
 		13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openssl.xcodeproj; path = "openssl-xcode/openssl.xcodeproj"; sourceTree = "<group>"; };
-		13035E06135F1EDF00ED03B9 /* libcrypto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcrypto.a; sourceTree = SOURCE_ROOT; };
-		13035E07135F1EDF00ED03B9 /* libsqlcipher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libsqlcipher.a; sourceTree = SOURCE_ROOT; };
 		13035E0A135F203300ED03B9 /* icon_explosive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_explosive.png; sourceTree = "<group>"; };
 		13035E0B135F203300ED03B9 /* icon_explosive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_explosive@2x.png"; sourceTree = "<group>"; };
 		13035E38135F6BE200ED03B9 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helper.h"; path = "nsdate-helper/NSDate+Helper.h"; sourceTree = "<group>"; };
@@ -174,8 +172,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				13035E06135F1EDF00ED03B9 /* libcrypto.a */,
-				13035E07135F1EDF00ED03B9 /* libsqlcipher.a */,
 				13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */,
 				13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
