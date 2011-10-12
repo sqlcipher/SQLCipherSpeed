@@ -145,6 +145,8 @@
 }
 
 - (IBAction)runTest:(id) sender {
+    // make sure we dismiss this guy, first
+    [pageSizeField resignFirstResponder];
 	
 	testButton.enabled = NO;
 	[testButton setTitle:@"Running" forState:UIControlStateDisabled];
