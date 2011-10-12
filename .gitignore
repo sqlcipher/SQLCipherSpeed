@@ -4,3 +4,4 @@ xcuserdata
 xcuserdata/*
 *.xcworkspace/*
 *.xcworkspace
+.DS_Store
