@@ -31,6 +31,7 @@
 
 -(void) runTest:(sqlite3 *)db {
 	if(db == encryptedDb) {
+        sqlite3_exec(encryptedDb, KEY, NULL, NULL, NULL);
         // if the pageSize property was set, use it instead of the sqlite default
         if (pageSize > 0)
         {
@@ -38,7 +39,6 @@
             NSLog(@"setting non-standard pageSize with: %@", pageSizeSQL);
             sqlite3_exec(encryptedDb, [pageSizeSQL UTF8String], NULL, NULL, NULL);
         }
-		sqlite3_exec(encryptedDb, KEY, NULL, NULL, NULL);
 	}
 	sqlite3_exec(db, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
 }
