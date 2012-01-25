@@ -23,6 +23,7 @@
 		90334C3F0FD1684B00155FDE /* TestResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90334C3E0FD1684A00155FDE /* TestResultCell.m */; };
 		90334C420FD16A0600155FDE /* TestResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90334C410FD16A0600155FDE /* TestResultCell.xib */; };
 		905CD66F130F05CD00E81E38 /* LogicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 905CD66E130F05CD00E81E38 /* LogicTest.m */; };
+		90B7A4BD14CFCB51008134E8 /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B7A4BB14CFC8DD008134E8 /* libsqlcipher.a */; };
 		90C9AFF11326A1D100693CC5 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C9AFEF1326A1B400693CC5 /* libcrypto.a */; };
 		90C9AFF21326A1D800693CC5 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C9AFEF1326A1B400693CC5 /* libcrypto.a */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90B7A4BD14CFCB51008134E8 /* libsqlcipher.a in Frameworks */,
 				90C9AFF11326A1D100693CC5 /* libcrypto.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
