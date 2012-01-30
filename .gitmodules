@@ -1,9 +1,9 @@
 [submodule "sqlcipher"]
 	path = sqlcipher
-	url = https://github.com/sjlombardo/sqlcipher.git
+	url = https://github.com/sqlcipher/sqlcipher.git
 [submodule "openssl-xcode"]
 	path = openssl-xcode
-	url = https://github.com/sjlombardo/openssl-xcode.git
+	url = https://github.com/sqlcipher/openssl-xcode.git
 [submodule "nsdate-helper"]
 	path = nsdate-helper
 	url = git://github.com/billymeltdown/nsdate-helper.git
