@@ -187,6 +187,7 @@
                       [[[BigInsertAfterDeleteTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
                       [[[ManyInsertsAfterDeleteTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
                       [[[DropTableTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
+                      [[[PBKDF2Test alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
                       nil
                       ];
         

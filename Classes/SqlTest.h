@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
+#import <openssl/hmac.h>
 
 @interface SqlTest : NSObject <NSCoding, NSCopying> {
 	sqlite3 *normalDb;

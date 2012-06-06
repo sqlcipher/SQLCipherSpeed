@@ -279,3 +279,26 @@
 }
 
 @end
+
+@implementation PBKDF2Test
+
+-(void) setup {
+    self.iterations = 7500;
+    self.name = [NSString stringWithFormat:@"PBKDF2 Run - %d Cycles", self.iterations];
+}
+
+
+-(void) bind:(NSInteger)i {
+    
+    char *password = "5^ra6fU&jHWXad";
+    char *salt = "123456789";
+    int iterationCount = 1;
+    int keySize = 256;
+    unsigned char buffer[1024];
+    
+    PKCS5_PBKDF2_HMAC_SHA1(password, strlen(password), (unsigned char *)salt, strlen(salt),
+                           iterationCount, keySize, buffer);
+
+}
+
+@end

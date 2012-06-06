@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SqlTest.h"
 #import "IteratedSqlTest.h"
+#import "IteratedTest.h"
 
 @interface PragmaKeyTest : SqlTest { 
     NSInteger pageSize;
@@ -59,4 +60,7 @@
 @end
 
 @interface DropTableTest : SqlTest { }
+@end
+
+@interface PBKDF2Test : IteratedTest {}
 @end
