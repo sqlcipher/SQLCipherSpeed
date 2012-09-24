@@ -22,6 +22,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ResultViewController.m */; };
 		88498A8B157FC85300DD19A9 /* IteratedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88498A8A157FC85300DD19A9 /* IteratedTest.m */; };
+		90023F8A1610B00E006B832E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90023F891610B00E006B832E /* Default-568h@2x.png */; };
 		9032F1750FD22EEF001C16BA /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9032F1740FD22EEF001C16BA /* ProgressViewController.xib */; };
 		9032F17A0FD22F95001C16BA /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032F1790FD22F95001C16BA /* ProgressViewController.m */; };
 		9032F2380FD2378A001C16BA /* TestDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032F2370FD2378A001C16BA /* TestDefinitions.m */; };
@@ -85,6 +86,7 @@
 		88498A89157FC85300DD19A9 /* IteratedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IteratedTest.h; sourceTree = "<group>"; };
 		88498A8A157FC85300DD19A9 /* IteratedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IteratedTest.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90023F891610B00E006B832E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9032F1740FD22EEF001C16BA /* ProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressViewController.xib; sourceTree = "<group>"; };
 		9032F1780FD22F95001C16BA /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		9032F1790FD22F95001C16BA /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				90023F891610B00E006B832E /* Default-568h@2x.png */,
 				13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */,
 				13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -331,6 +334,7 @@
 				9032F1750FD22EEF001C16BA /* ProgressViewController.xib in Resources */,
 				13035E0C135F203300ED03B9 /* icon_explosive.png in Resources */,
 				13035E0D135F203300ED03B9 /* icon_explosive@2x.png in Resources */,
+				90023F8A1610B00E006B832E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,10 +540,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
