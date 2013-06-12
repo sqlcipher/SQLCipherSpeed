@@ -32,6 +32,7 @@
 -(void) runTest:(sqlite3 *)db {
 	if(db == encryptedDb) {
         sqlite3_exec(encryptedDb, KEY, NULL, NULL, NULL);
+        sqlite3_exec(encryptedDb, "PRAGMA kdf_iter = 64000;", NULL, NULL, NULL);
         // if the pageSize property was set, use it instead of the sqlite default
         if (pageSize > 0)
         {
@@ -276,29 +277,6 @@
 -(void) runTest:(sqlite3 *)db {
 	sqlite3_exec(db, "DROP TABLE t1;", NULL, NULL, NULL);
 	sqlite3_exec(db, "DROP TABLE t2", NULL, NULL, NULL);
-}
-
-@end
-
-@implementation PBKDF2Test
-
--(void) setup {
-    self.iterations = 7500;
-    self.name = [NSString stringWithFormat:@"PBKDF2 Run - %d Cycles", self.iterations];
-}
-
-
--(void) bind:(NSInteger)i {
-    
-    char *password = "5^ra6fU&jHWXad";
-    char *salt = "123456789";
-    int iterationCount = 1;
-    int keySize = 256;
-    unsigned char buffer[1024];
-    
-    PKCS5_PBKDF2_HMAC_SHA1(password, strlen(password), (unsigned char *)salt, strlen(salt),
-                           iterationCount, keySize, buffer);
-
 }
 
 @end

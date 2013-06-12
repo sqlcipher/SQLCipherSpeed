@@ -15,7 +15,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		2864F0B2141E9F3900C2EC35 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13035DD7135F1E3C00ED03B9 /* libcrypto.a */; };
 		2864F0B3141E9F3900C2EC35 /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13035DC4135F1E0C00ED03B9 /* libsqlcipher.a */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		2899E5600DE3E45000AC0155 /* ResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* ResultViewController.xib */; };
@@ -23,6 +22,7 @@
 		28C286E10D94DF7D0034E888 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ResultViewController.m */; };
 		88498A8B157FC85300DD19A9 /* IteratedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88498A8A157FC85300DD19A9 /* IteratedTest.m */; };
 		90023F8A1610B00E006B832E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90023F891610B00E006B832E /* Default-568h@2x.png */; };
+		9022D3211768E89300076BA8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9022D31F1768E86000076BA8 /* Security.framework */; };
 		9032F1750FD22EEF001C16BA /* ProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9032F1740FD22EEF001C16BA /* ProgressViewController.xib */; };
 		9032F17A0FD22F95001C16BA /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032F1790FD22F95001C16BA /* ProgressViewController.m */; };
 		9032F2380FD2378A001C16BA /* TestDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032F2370FD2378A001C16BA /* TestDefinitions.m */; };
@@ -41,20 +41,6 @@
 			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = sqlcipher;
 		};
-		13035DD6135F1E3C00ED03B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9069D28C0FCE659A0042E34C;
-			remoteInfo = crypto;
-		};
-		13035E02135F1ECD00ED03B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9069D28B0FCE659A0042E34C;
-			remoteInfo = crypto;
-		};
 		13035E04135F1ED100ED03B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */;
@@ -66,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sqlcipher.xcodeproj; path = sqlcipher/sqlcipher.xcodeproj; sourceTree = "<group>"; };
-		13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openssl.xcodeproj; path = "openssl-xcode/openssl.xcodeproj"; sourceTree = "<group>"; };
 		13035E0A135F203300ED03B9 /* icon_explosive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_explosive.png; sourceTree = "<group>"; };
 		13035E0B135F203300ED03B9 /* icon_explosive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_explosive@2x.png"; sourceTree = "<group>"; };
 		13035E38135F6BE200ED03B9 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Helper.h"; path = "nsdate-helper/NSDate+Helper.h"; sourceTree = "<group>"; };
@@ -87,6 +72,7 @@
 		88498A8A157FC85300DD19A9 /* IteratedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IteratedTest.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90023F891610B00E006B832E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9022D31F1768E86000076BA8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9032F1740FD22EEF001C16BA /* ProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressViewController.xib; sourceTree = "<group>"; };
 		9032F1780FD22F95001C16BA /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		9032F1790FD22F95001C16BA /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
@@ -109,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2864F0B2141E9F3900C2EC35 /* libcrypto.a in Frameworks */,
+				9022D3211768E89300076BA8 /* Security.framework in Frameworks */,
 				2864F0B3141E9F3900C2EC35 /* libsqlcipher.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -159,14 +145,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13035DD0135F1E3C00ED03B9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				13035DD7135F1E3C00ED03B9 /* libcrypto.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,8 +157,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				9022D31F1768E86000076BA8 /* Security.framework */,
 				90023F891610B00E006B832E /* Default-568h@2x.png */,
-				13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */,
 				13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -242,7 +220,6 @@
 			);
 			dependencies = (
 				13035E05135F1ED100ED03B9 /* PBXTargetDependency */,
-				13035E03135F1ECD00ED03B9 /* PBXTargetDependency */,
 			);
 			name = SQLCipherSpeed;
 			productName = SQLCipherSpeed;
@@ -290,10 +267,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 13035DD0135F1E3C00ED03B9 /* Products */;
-					ProjectRef = 13035DCF135F1E3C00ED03B9 /* openssl.xcodeproj */;
-				},
-				{
 					ProductGroup = 13035DBC135F1E0C00ED03B9 /* Products */;
 					ProjectRef = 13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */;
 				},
@@ -312,13 +285,6 @@
 			fileType = archive.ar;
 			path = libsqlcipher.a;
 			remoteRef = 13035DC3135F1E0C00ED03B9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		13035DD7135F1E3C00ED03B9 /* libcrypto.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libcrypto.a;
-			remoteRef = 13035DD6135F1E3C00ED03B9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -393,11 +359,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		13035E03135F1ECD00ED03B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = crypto;
-			targetProxy = 13035E02135F1ECD00ED03B9 /* PBXContainerItemProxy */;
-		};
 		13035E05135F1ED100ED03B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = sqlcipher;

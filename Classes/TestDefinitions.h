@@ -62,5 +62,3 @@
 @interface DropTableTest : SqlTest { }
 @end
 
-@interface PBKDF2Test : IteratedTest {}
-@end
