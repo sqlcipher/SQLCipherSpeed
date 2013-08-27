@@ -7,6 +7,7 @@
 //
 
 #import "TestDefinitions.h"
+#import <CommonCrypto/CommonKeyDerivation.h>
 
 @implementation PragmaKeyTest
 
@@ -295,16 +296,14 @@
 
 
 -(void) bind:(NSInteger)i {
-    
-    char *password = "5^ra6fU&jHWXad";
-    char *salt = "123456789";
+    NSString *password = @"5^ra6fU&jHWXad";
+    NSString *salt = @"123456789";
+    NSData *passwordData = [password dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *saltData = [salt dataUsingEncoding:NSUTF8StringEncoding];
     int iterationCount = 1;
     int keySize = 256;
     unsigned char buffer[1024];
-    
-    PKCS5_PBKDF2_HMAC_SHA1(password, strlen(password), (unsigned char *)salt, strlen(salt),
-                           iterationCount, keySize, buffer);
-
+    CCKeyDerivationPBKDF(kCCPBKDF2, passwordData.bytes, passwordData.length, saltData.bytes, saltData.length, kCCPRFHmacAlgSHA1, iterationCount, buffer, keySize);
 }
 
 @end
