@@ -14,6 +14,7 @@
 #define RESULTSET_KEY_DATE @"date"
 #define RESULTSET_KEY_TESTS @"tests"
 #define RESULTSET_KEY_PAGESZ @"pagesz"
+#define RESTULSET_KEY_PBKDF2ITER @"kdfiter"
 #define RESULTS_FILE_NAME @"results.plist"
 
 #define SECTION_AVG 0
@@ -216,6 +217,7 @@
         NSNumber *pgSizeNumber = [NSNumber numberWithInt:[pageSize intValue]];
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:tests, RESULTSET_KEY_TESTS,
                               pgSizeNumber, RESULTSET_KEY_PAGESZ,
+                              [NSNumber numberWithInt:keyTest.kdfIterations], RESTULSET_KEY_PBKDF2ITER,
                               [NSDate date], RESULTSET_KEY_DATE, nil];
         
 		[self performSelectorOnMainThread:@selector(_finishRun:) withObject:dict waitUntilDone:NO];
@@ -389,11 +391,15 @@
         NSDictionary *resultSet = (NSDictionary *)[resultSets objectAtIndex:indexPath.row];
         NSDate *date = (NSDate *)[resultSet objectForKey:RESULTSET_KEY_DATE];
         cell.textLabel.text = [NSDate stringForDisplayFromDate:date prefixed:NO alwaysDisplayTime:YES];
-        NSNumber *pageSizeNumber = (NSNumber *)[resultSet objectForKey:RESULTSET_KEY_PAGESZ];
-        if ([pageSizeNumber intValue] == 0)
-            cell.detailTextLabel.text = nil;
-        else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"page size: %d", [pageSizeNumber intValue]];
+        NSInteger pageSize = [[resultSet objectForKey:RESULTSET_KEY_PAGESZ] integerValue];
+        NSInteger kdfIter = [[resultSet objectForKey:RESTULSET_KEY_PBKDF2ITER] integerValue];
+        if (pageSize == 0) {
+            pageSize = 1024; // just show the default
+        }
+        if (kdfIter == 0) {
+            kdfIter = 64000;
+        }
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"pbkdf2: %d page size: %d", (int)kdfIter, (int)pageSize];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.accessoryView = nil;
     }

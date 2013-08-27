@@ -35,16 +35,16 @@
 -(void) runTest:(sqlite3 *)db {
 	if(db == encryptedDb) {
         sqlite3_exec(encryptedDb, KEY, NULL, NULL, NULL);
+        if (kdfIterations > 0) {
+            NSString *kdfSQL = [NSString stringWithFormat:@"PRAGMA kdf_iter = %d;", (int)kdfIterations];
+            sqlite3_exec(encryptedDb, [kdfSQL UTF8String], NULL, NULL, NULL);
+        }
         // if the pageSize property was set, use it instead of the sqlite default
         if (pageSize > 0)
         {
             NSString *pageSizeSQL = [NSString stringWithFormat:@"PRAGMA cipher_page_size = %d;", pageSize];
             NSLog(@"setting non-standard pageSize with: %@", pageSizeSQL);
             sqlite3_exec(encryptedDb, [pageSizeSQL UTF8String], NULL, NULL, NULL);
-        }
-        if (kdfIterations > 0) {
-            NSString *kdfSQL = [NSString stringWithFormat:@"PRAGMA kdf_iter = '%d';", (int)kdfIterations];
-            sqlite3_exec(encryptedDb, [kdfSQL UTF8String], NULL, NULL, NULL);
         }
 	}
 	sqlite3_exec(db, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
