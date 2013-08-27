@@ -1,0 +1,10 @@
+# For building under Xcode 5 (only):
+
+git fetch origin Xcode5:Xcode5
+git checkout Xcode5
+sudo xcode-select -s /path/to/Xcode5-DP5.app
+make clean
+make init
+make
+
+# open SQLCipherSpeed.xcodeproj in Xcode 5 to build and run
