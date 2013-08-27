@@ -20,6 +20,7 @@
     NSMutableArray *resultSets;
     NSDictionary *averageResultSet;
     BOOL calculatingAverages;
+    UITextField *_kdfIterationsField;
 }
 
 @property(nonatomic,retain) IBOutlet UIButton *testButton;
@@ -32,6 +33,7 @@
 @property(nonatomic,retain) NSMutableArray *resultSets;
 @property(nonatomic,retain) NSDictionary *averageResultSet;
 @property(nonatomic) BOOL calculatingAverages;
+@property(nonatomic,retain) IBOutlet UITextField *kdfIterationsField;
 
 - (IBAction)reset:(id)sender;
 - (IBAction)runTest:(id)sender;

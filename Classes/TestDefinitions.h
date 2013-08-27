@@ -13,8 +13,10 @@
 
 @interface PragmaKeyTest : SqlTest { 
     NSInteger pageSize;
+    NSInteger kdfIterations;
 }
 @property (nonatomic) NSInteger pageSize;
+@property (nonatomic) NSInteger kdfIterations;
 @end
 
 @interface CreateTableTest : SqlTest { }

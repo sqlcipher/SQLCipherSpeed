@@ -39,8 +39,10 @@
 @synthesize calculatingAverages;
 @synthesize headerView;
 @synthesize pageSizeField;
+@synthesize kdfIterationsField = _kdfIterationsField;
 
 - (void)dealloc {
+    [_kdfIterationsField release];
     [pageSizeField release];
     [headerView release];
     [averageResultSet release];
@@ -164,12 +166,14 @@
         sqlite3_open([[ProgressViewController pathToDatabase:@"normal.db"] UTF8String], &normalDb);
         sqlite3_open([[ProgressViewController pathToDatabase:@"encrypted.db"] UTF8String], &encryptedDb);
         PragmaKeyTest *keyTest = [[[PragmaKeyTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease];
-        NSString *str = [pageSizeField text];
-        if (str)
-        {
+        NSString *pageSize = [pageSizeField text];
+        if (pageSize != nil) {
             // intValue returns zero if the user enters non-numeric text
-            [keyTest setPageSize:[str intValue]];
-        }        
+            keyTest.pageSize = [pageSize integerValue];
+        }
+        if (self.kdfIterationsField.text != nil) {
+            keyTest.kdfIterations = [self.kdfIterationsField.text integerValue];
+        }
         self.tests = [NSArray arrayWithObjects: 
                       keyTest,
                       [[[CreateTableTest alloc] initWithDb:normalDb encrypted:encryptedDb] autorelease],
@@ -209,7 +213,7 @@
         
         // store the result set for later by adding it to our list...
         // be clever about storing the page size (argh)
-        NSNumber *pgSizeNumber = [NSNumber numberWithInt:[str intValue]];
+        NSNumber *pgSizeNumber = [NSNumber numberWithInt:[pageSize intValue]];
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:tests, RESULTSET_KEY_TESTS,
                               pgSizeNumber, RESULTSET_KEY_PAGESZ,
                               [NSDate date], RESULTSET_KEY_DATE, nil];
