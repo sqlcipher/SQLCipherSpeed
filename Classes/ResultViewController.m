@@ -65,8 +65,8 @@
     resultCell.nameLabel.text = result.name;
 	resultCell.sqlLabel.text = result.sql;
 	
-	resultCell.normalTimeLabel.text = [NSString stringWithFormat:@"%d ms",  result.sqliteResult];
-	resultCell.encryptedTimeLabel.text = [NSString stringWithFormat:@"%d ms", result.sqlcipherResult];
+	resultCell.normalTimeLabel.text = [NSString stringWithFormat:@"%ld ms",  (long)result.sqliteResult];
+	resultCell.encryptedTimeLabel.text = [NSString stringWithFormat:@"%ld ms", (long)result.sqlcipherResult];
 	resultCell.slowDownLabel.text = [NSString stringWithFormat:@"%.1f%%", result.sqlcipherImpact];
     
     return resultCell;

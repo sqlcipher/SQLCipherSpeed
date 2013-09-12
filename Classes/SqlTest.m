@@ -77,7 +77,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ impact: %.1lf%% sqlite: %dms sqlcipher: %d ms", 
+    return [NSString stringWithFormat:@"%@ impact: %.1lf%% sqlite: %ld ms sqlcipher: %ld ms",
             [self nick], [self sqlcipherImpact], [self sqliteResult], [self sqlcipherResult]];
 }
 
@@ -101,12 +101,12 @@
 	NSLog(@"placeholder to implement in subclass");
 }
 
-- (int)sqliteResult
+- (NSInteger)sqliteResult
 {
     return self.normalNs / 1000000;
 }
 
-- (void)setSqliteResult:(int)milliseconds
+- (void)setSqliteResult:(NSInteger)milliseconds
 {
     // convert to nanoseconds
     [self willChangeValueForKey:@"normalNs"];
@@ -114,13 +114,13 @@
     [self didChangeValueForKey:@"normalNs"];
 }
 
-- (int)sqlcipherResult
+- (NSInteger)sqlcipherResult
 {
     // convert to nanoseconds
     return self.encryptedNs / 1000000;
 }
 
-- (void)setSqlcipherResult:(int)milliseconds
+- (void)setSqlcipherResult:(NSInteger)milliseconds
 {
     [self willChangeValueForKey:@"encryptedNs"];
     encryptedNs = milliseconds * 1000000;
@@ -129,8 +129,8 @@
 
 - (double)sqlcipherImpact
 {
-    int normalMs = self.sqliteResult; 
-	int encryptedMs = self.sqlcipherResult;
+    NSInteger normalMs = self.sqliteResult;
+	NSInteger encryptedMs = self.sqlcipherResult;
     return ((double) (encryptedMs - normalMs) / (double) normalMs) * 100.0;
 }
 

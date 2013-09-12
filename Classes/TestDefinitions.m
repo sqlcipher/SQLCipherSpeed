@@ -42,7 +42,7 @@
         // if the pageSize property was set, use it instead of the sqlite default
         if (pageSize > 0)
         {
-            NSString *pageSizeSQL = [NSString stringWithFormat:@"PRAGMA cipher_page_size = %d;", pageSize];
+            NSString *pageSizeSQL = [NSString stringWithFormat:@"PRAGMA cipher_page_size = %ld;", (long)pageSize];
             NSLog(@"setting non-standard pageSize with: %@", pageSizeSQL);
             sqlite3_exec(encryptedDb, [pageSizeSQL UTF8String], NULL, NULL, NULL);
         }
@@ -76,7 +76,7 @@
 
 -(void) bind:(NSInteger)i {
 	int random = rand() * 100000;
-	sqlite3_bind_int(stmt, 1, i);
+	sqlite3_bind_int(stmt, 1, (int)i);
 	sqlite3_bind_int(stmt, 2, random);
 	sqlite3_bind_text(stmt, 3, [[NSString stringWithFormat:@"%d", random] UTF8String], -1, SQLITE_TRANSIENT);
 }
@@ -94,7 +94,7 @@
 
 -(void) bind:(NSInteger)i {
 	int random = rand() * 100000;
-	sqlite3_bind_int(stmt, 1, i);
+	sqlite3_bind_int(stmt, 1, (int)i);
 	sqlite3_bind_int(stmt, 2, random);
 	sqlite3_bind_text(stmt, 3, [[NSString stringWithFormat:@"%d", random] UTF8String], -1, SQLITE_TRANSIENT);
 }
@@ -110,11 +110,11 @@
 }
 
 -(void) bind:(NSInteger)i {
-	int lwr = i * 50;
-	int upr = (i + 10) * 50;
+	NSInteger lwr = i * 50;
+	NSInteger upr = (i + 10) * 50;
 	
-	sqlite3_bind_int(stmt, 1, lwr);
-	sqlite3_bind_int(stmt, 2, upr);
+	sqlite3_bind_int(stmt, 1, (int)lwr);
+	sqlite3_bind_int(stmt, 2, (int)upr);
 }
 
 @end
@@ -128,7 +128,7 @@
 }
 
 -(void) bind:(NSInteger)i {
-	sqlite3_bind_text(stmt, 1, [[NSString stringWithFormat:@"%d", i] UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 1, [[NSString stringWithFormat:@"%ld", (long)i] UTF8String], -1, SQLITE_TRANSIENT);
 }
 
 @end
@@ -156,11 +156,11 @@
 }
 
 -(void) bind:(NSInteger)i {
-	int lwr = i * 100;
-	int upr = (i + 10) * 100;
+	NSInteger lwr = i * 100;
+	NSInteger upr = (i + 10) * 100;
 	
-	sqlite3_bind_int(stmt, 1, lwr);
-	sqlite3_bind_int(stmt, 2, upr);
+	sqlite3_bind_int(stmt, 1, (int)lwr);
+	sqlite3_bind_int(stmt, 2, (int)upr);
 }
 
 @end
@@ -175,11 +175,11 @@
 }
 
 -(void) bind:(NSInteger)i {
-	int lwr = i * 5;
-	int upr = (i + 1) * 5;
+	NSInteger lwr = i * 5;
+	NSInteger upr = (i + 1) * 5;
 	
-	sqlite3_bind_int(stmt, 1, lwr);
-	sqlite3_bind_int(stmt, 2, upr);
+	sqlite3_bind_int(stmt, 1, (int)lwr);
+	sqlite3_bind_int(stmt, 2, (int)upr);
 }
 
 @end
@@ -197,7 +197,7 @@
 	int random = rand() * 100000;
 	
 	sqlite3_bind_int(stmt, 1, random);
-	sqlite3_bind_int(stmt, 2, i);
+	sqlite3_bind_int(stmt, 2, (int)i);
 }
 
 @end
@@ -266,7 +266,7 @@
 
 -(void) bind:(NSInteger)i {
 	int random = rand() * 100000;
-	sqlite3_bind_int(stmt, 1, i);
+	sqlite3_bind_int(stmt, 1, (int)i);
 	sqlite3_bind_int(stmt, 2, random);
 	sqlite3_bind_text(stmt, 3, [[NSString stringWithFormat:@"%d", random] UTF8String], -1, SQLITE_TRANSIENT);
 }
@@ -291,7 +291,7 @@
 
 -(void) setup {
     self.iterations = 7500;
-    self.name = [NSString stringWithFormat:@"PBKDF2 Run - %d Cycles", self.iterations];
+    self.name = [NSString stringWithFormat:@"PBKDF2 Run - %ld Cycles", (long)self.iterations];
 }
 
 

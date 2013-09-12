@@ -11,7 +11,7 @@
 
 @interface IteratedSqlTest : SqlTest {
 	sqlite3_stmt *stmt;
-	int iterations;
+	NSInteger iterations;
 	BOOL useTransaction;
 }
 

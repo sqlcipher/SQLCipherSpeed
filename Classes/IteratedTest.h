@@ -10,7 +10,7 @@
 #import "SqlTest.h"
 
 @interface IteratedTest : SqlTest {
-    	int iterations;
+    	NSInteger iterations;
 }
 
 @property (assign, nonatomic) NSInteger iterations;

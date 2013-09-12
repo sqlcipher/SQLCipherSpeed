@@ -196,9 +196,9 @@
                       nil
                       ];
         
-        int count = [tests count];
+        NSUInteger count = [tests count];
         
-        for(int i = 0; i < count; i++) {
+        for (NSInteger i = 0; i < count; i++) {
             SqlTest *test = (SqlTest *) [tests objectAtIndex:i];
             [self performSelectorOnMainThread:@selector(_updateUIStartedTest:) withObject:test waitUntilDone:NO];
             [test runTests];
@@ -217,7 +217,7 @@
         NSNumber *pgSizeNumber = [NSNumber numberWithInt:[pageSize intValue]];
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:tests, RESULTSET_KEY_TESTS,
                               pgSizeNumber, RESULTSET_KEY_PAGESZ,
-                              [NSNumber numberWithInt:keyTest.kdfIterations], RESTULSET_KEY_PBKDF2ITER,
+                              [NSNumber numberWithInteger:keyTest.kdfIterations], RESTULSET_KEY_PBKDF2ITER,
                               [NSDate date], RESULTSET_KEY_DATE, nil];
         
 		[self performSelectorOnMainThread:@selector(_finishRun:) withObject:dict waitUntilDone:NO];
@@ -304,7 +304,7 @@
 - (void)_updateUIStartedTest:(SqlTest *)test
 {
     NSUInteger i = [tests indexOfObject:test];
-    testNumberLabel.text = [NSString stringWithFormat:@"Test %d of %d...", i, [tests count]];
+    testNumberLabel.text = [NSString stringWithFormat:@"Test %lu of %lu...", (unsigned long)i, (unsigned long)[tests count]];
 }
 
 - (void)_updateUIStoppedTest:(SqlTest *)test
