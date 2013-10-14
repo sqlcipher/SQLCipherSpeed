@@ -15,10 +15,12 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2871C85B180C41A30023D53D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2871C85A180C41A30023D53D /* XCTest.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		2897A78417CD324200B45E78 /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13035DC4135F1E0C00ED03B9 /* libsqlcipher.a */; };
 		2899E5600DE3E45000AC0155 /* ResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* ResultViewController.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28AE5E28180C42BF008FB66F /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13035DC4135F1E0C00ED03B9 /* libsqlcipher.a */; };
 		28B46E6617CD085D00672510 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B46E6517CD085D00672510 /* Security.framework */; };
 		28C286E10D94DF7D0034E888 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ResultViewController.m */; };
 		88498A8B157FC85300DD19A9 /* IteratedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88498A8A157FC85300DD19A9 /* IteratedTest.m */; };
@@ -48,6 +50,13 @@
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = sqlcipher;
 		};
+		28AE5E25180C42B7008FB66F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 13035DBB135F1E0C00ED03B9 /* sqlcipher.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = sqlcipher;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +70,7 @@
 		1D3623250D0F684500981E51 /* SQLCipherSpeedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLCipherSpeedAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* SQLCipherSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SQLCipherSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2871C85A180C41A30023D53D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* ResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultViewController.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* SQLCipherSpeed_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLCipherSpeed_Prefix.pch; sourceTree = "<group>"; };
@@ -107,6 +117,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28AE5E28180C42BF008FB66F /* libsqlcipher.a in Frameworks */,
+				2871C85B180C41A30023D53D /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +209,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2871C85A180C41A30023D53D /* XCTest.framework */,
 				28B46E6517CD085D00672510 /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -238,6 +251,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				28AE5E26180C42B7008FB66F /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -369,6 +383,11 @@
 			name = sqlcipher;
 			targetProxy = 13035E04135F1ED100ED03B9 /* PBXContainerItemProxy */;
 		};
+		28AE5E26180C42B7008FB66F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = sqlcipher;
+			targetProxy = 28AE5E25180C42B7008FB66F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -433,8 +452,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -442,13 +462,12 @@
 				INFOPLIST_FILE = "Tests-Info.plist";
 				OTHER_CFLAGS = "-DSQLITE_HAS_CODEC";
 				OTHER_LDFLAGS = (
-					"-lcrypto",
 					"-framework",
 					Foundation,
 					"-framework",
-					SenTestingKit,
-					"-framework",
 					UIKit,
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
@@ -463,20 +482,20 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				INFOPLIST_FILE = "Tests-Info.plist";
 				OTHER_CFLAGS = "-DSQLITE_HAS_CODEC";
 				OTHER_LDFLAGS = (
-					"-lcrypto",
 					"-framework",
 					Foundation,
 					"-framework",
-					SenTestingKit,
-					"-framework",
 					UIKit,
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
@@ -495,7 +514,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				"IPHONEOS_DEPLOYMENT_TARGET[arch=arm64]" = 6.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[arch=arm64]" = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PROVISIONING_PROFILE = "";
@@ -514,7 +533,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				"IPHONEOS_DEPLOYMENT_TARGET[arch=arm64]" = 6.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[arch=arm64]" = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PROVISIONING_PROFILE = "";
