@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		881F13011CB2C8E0000AB2AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F13001CB2C8E0000AB2AB /* main.m */; };
+		881F13041CB2C8E0000AB2AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F13031CB2C8E0000AB2AB /* AppDelegate.m */; };
+		881F13071CB2C8E0000AB2AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881F13061CB2C8E0000AB2AB /* ViewController.m */; };
+		881F130A1CB2C8E0000AB2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881F13081CB2C8E0000AB2AB /* Main.storyboard */; };
+		881F130C1CB2C8E0000AB2AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 881F130B1CB2C8E0000AB2AB /* Assets.xcassets */; };
+		881F130F1CB2C8E0000AB2AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 881F130D1CB2C8E0000AB2AB /* LaunchScreen.storyboard */; };
+		88ECC4481CB2FA180010A198 /* libsqlcipher-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88ECC4471CB2FA180010A198 /* libsqlcipher-ios.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		881F12FC1CB2C8E0000AB2AB /* sqlcipher-ios-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sqlcipher-ios-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		881F13001CB2C8E0000AB2AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		881F13021CB2C8E0000AB2AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		881F13031CB2C8E0000AB2AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		881F13051CB2C8E0000AB2AB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		881F13061CB2C8E0000AB2AB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		881F13091CB2C8E0000AB2AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		881F130B1CB2C8E0000AB2AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		881F130E1CB2C8E0000AB2AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		881F13101CB2C8E0000AB2AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88ECC4471CB2FA180010A198 /* libsqlcipher-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsqlcipher-ios.a"; path = "../../ios-libs/libsqlcipher-ios.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		881F12F91CB2C8E0000AB2AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88ECC4481CB2FA180010A198 /* libsqlcipher-ios.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		881F12F31CB2C8E0000AB2AB = {
+			isa = PBXGroup;
+			children = (
+				88ECC4471CB2FA180010A198 /* libsqlcipher-ios.a */,
+				881F12FE1CB2C8E0000AB2AB /* sqlcipher-ios-demo */,
+				881F12FD1CB2C8E0000AB2AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		881F12FD1CB2C8E0000AB2AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				881F12FC1CB2C8E0000AB2AB /* sqlcipher-ios-demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		881F12FE1CB2C8E0000AB2AB /* sqlcipher-ios-demo */ = {
+			isa = PBXGroup;
+			children = (
+				881F13021CB2C8E0000AB2AB /* AppDelegate.h */,
+				881F13031CB2C8E0000AB2AB /* AppDelegate.m */,
+				881F13051CB2C8E0000AB2AB /* ViewController.h */,
+				881F13061CB2C8E0000AB2AB /* ViewController.m */,
+				881F13081CB2C8E0000AB2AB /* Main.storyboard */,
+				881F130B1CB2C8E0000AB2AB /* Assets.xcassets */,
+				881F130D1CB2C8E0000AB2AB /* LaunchScreen.storyboard */,
+				881F13101CB2C8E0000AB2AB /* Info.plist */,
+				881F12FF1CB2C8E0000AB2AB /* Supporting Files */,
+			);
+			path = "sqlcipher-ios-demo";
+			sourceTree = "<group>";
+		};
+		881F12FF1CB2C8E0000AB2AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				881F13001CB2C8E0000AB2AB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		881F12FB1CB2C8E0000AB2AB /* sqlcipher-ios-demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 881F13131CB2C8E0000AB2AB /* Build configuration list for PBXNativeTarget "sqlcipher-ios-demo" */;
+			buildPhases = (
+				881F12F81CB2C8E0000AB2AB /* Sources */,
+				881F12F91CB2C8E0000AB2AB /* Frameworks */,
+				881F12FA1CB2C8E0000AB2AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "sqlcipher-ios-demo";
+			productName = "sqlcipher-ios-demo";
+			productReference = 881F12FC1CB2C8E0000AB2AB /* sqlcipher-ios-demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		881F12F41CB2C8E0000AB2AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Zetetic;
+				TargetAttributes = {
+					881F12FB1CB2C8E0000AB2AB = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 881F12F71CB2C8E0000AB2AB /* Build configuration list for PBXProject "sqlcipher-ios-demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 881F12F31CB2C8E0000AB2AB;
+			productRefGroup = 881F12FD1CB2C8E0000AB2AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				881F12FB1CB2C8E0000AB2AB /* sqlcipher-ios-demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		881F12FA1CB2C8E0000AB2AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				881F130F1CB2C8E0000AB2AB /* LaunchScreen.storyboard in Resources */,
+				881F130C1CB2C8E0000AB2AB /* Assets.xcassets in Resources */,
+				881F130A1CB2C8E0000AB2AB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		881F12F81CB2C8E0000AB2AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				881F13071CB2C8E0000AB2AB /* ViewController.m in Sources */,
+				881F13041CB2C8E0000AB2AB /* AppDelegate.m in Sources */,
+				881F13011CB2C8E0000AB2AB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		881F13081CB2C8E0000AB2AB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				881F13091CB2C8E0000AB2AB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		881F130D1CB2C8E0000AB2AB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				881F130E1CB2C8E0000AB2AB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		881F13111CB2C8E0000AB2AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		881F13121CB2C8E0000AB2AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		881F13141CB2C8E0000AB2AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = ../include;
+				INFOPLIST_FILE = "sqlcipher-ios-demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"../../ios-libs",
+				);
+				OTHER_CFLAGS = "-DSQLITE_HAS_CODEC";
+				PRODUCT_BUNDLE_IDENTIFIER = "zetetic.sqlcipher-ios-demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		881F13151CB2C8E0000AB2AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = ../include;
+				INFOPLIST_FILE = "sqlcipher-ios-demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"../../ios-libs",
+				);
+				OTHER_CFLAGS = "-DSQLITE_HAS_CODEC";
+				PRODUCT_BUNDLE_IDENTIFIER = "zetetic.sqlcipher-ios-demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		881F12F71CB2C8E0000AB2AB /* Build configuration list for PBXProject "sqlcipher-ios-demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				881F13111CB2C8E0000AB2AB /* Debug */,
+				881F13121CB2C8E0000AB2AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		881F13131CB2C8E0000AB2AB /* Build configuration list for PBXNativeTarget "sqlcipher-ios-demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				881F13141CB2C8E0000AB2AB /* Debug */,
+				881F13151CB2C8E0000AB2AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 881F12F41CB2C8E0000AB2AB /* Project object */;
+}
